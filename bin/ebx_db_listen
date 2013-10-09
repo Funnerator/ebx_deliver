@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'daemons'
+
+Daemons.run_proc('ebx_db_listen.rb') do
+  reader = EbxDeliver::AwsSqsReader.new
+  reader.connect!
+end
