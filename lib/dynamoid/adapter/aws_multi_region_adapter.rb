@@ -1,11 +1,16 @@
+require 'dynamoid/adapter/aws_sdk'
+
 module Dynamoid
   module Adapter
     module AwsMultiRegionAdapter
-      extend AwsSdk
-      extend self
+      extend Dynamoid::Adapter::AwsSdk
 
-      def connect!
-        @@connection = ::EbxDeliver::DynamoDB.new
+      def self.connect!
+        @@connection = AWS::DynamoDB.new(config: EbxDeliver::AwsConfig.new)
+      end
+
+      def self.connection
+        @@connection
       end
     end
   end
