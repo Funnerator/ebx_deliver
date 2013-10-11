@@ -9,8 +9,8 @@ module EbxDeliver
       super(options.merge(AWS.config.supplied))
     end
 
-    def http_handler
-      Writer::SNSHandler.new
+    def dynamo_db_client
+      Writer::Client::V20111205.new(config: self)
     end
   end
 end
